@@ -5,7 +5,7 @@ let puntaje = 0
 
 //Ingresar la zona del Departamento 
 
-let zona= prompt("Bienvenidx a la evaluadora de departamentos ¿En que barrio se encuentra el departamento? Ingrese una de las siguientes opciones: Centro - Abasto - Norte - Sur - Lourdes - Pichincha") 
+let zona= prompt("Bienvenidx a la evaluadora de departamentos ¿En que barrio se encuentra el departamento? Ingrese una de las siguientes opciones: \n -Centro \n -Abasto \n-Norte \n-Sur \n-Lourdes \n-Pichincha") 
 
 validarZona(zona)
 
