@@ -141,4 +141,16 @@
         .FondoPantallaMain .container .row .col-md-4 .tarjeta .título_producto {
           font-size: 1.5em; } }
       
+
+    .botonCatalogo{
+      background-color: #f15942a2;
+      border-color: #f15942a2;
+    }
+    .botonCatalogo:hover {
+      font-size: 1.25rem;
+      background-color: #FFD060; 
+      color: #323232;
+      transition: all 1s;
+      border-color: #f15942a2;
+    }
       

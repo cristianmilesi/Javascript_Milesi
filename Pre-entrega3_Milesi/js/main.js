@@ -1,6 +1,7 @@
 //Captura de DOM//
 let catalogoDiv = document.getElementById("catalogoDiv")
 let verCatalogo = document.getElementById("verCatalogo")
+let ocultarCatalogo = document.getElementById("ocultarCatalogo")
 let comprarMedalla = document.getElementById("medallasBtn")
 let comprarBandana = document.getElementById("bandanasBtn")
 let comprarCollar = document.getElementById("collaresBtn")
@@ -48,7 +49,8 @@ function mostrarCatalogo(array) {
 
     catalogoDiv.innerHTML = ``
     for(let medalla of array) {
-        let nuevaMedalla = document.createElement("p")
+        let nuevaMedalla = document.createElement("div")
+        nuevaMedalla.className = "col-12 my-2 bg-white align-items-center "
         nuevaMedalla.innerHTML = `<p>Modelo: ${medalla.modelo} - Color: ${medalla.color} - Precio: ${medalla.precio} - ID: ${medalla.id}</p>`
         catalogoDiv.appendChild(nuevaMedalla)
     }
@@ -68,6 +70,9 @@ verCatalogo.addEventListener("click", ()=>{
    mostrarCatalogo(catalogoMedallas)
 })
 
+ocultarCatalogo.onclick = () => {
+    catalogoDiv.innerHTML = ``
+ }
 
 comprarMedalla.addEventListener("click", ()=>{
     console.log(`Se agregó ${producto} al carrito`)
