@@ -18,7 +18,7 @@ class Medalla{
     }
 
     mostrarInfoMedalla(){
-        console.log(`La medalla ingresada tiene el modelo ${this.modelo} de color ${this.color} Su precio es de ${this.precio}`)
+        console.log(`La medalla ingresada tiene el modelo ${this.modelo} de color ${this.color} Su precio es de ${this.precio} y su ID ${this.idM}`)
      }
 }
 
@@ -36,32 +36,38 @@ catalogoMedallas.push(medalla1, medalla2, medalla3)
 //Funciones//
 
 //Ver Catálogo
-function verCatalogo(array){
+function verCatalogoConsola(array){
     console.log(`Nuestro catalogo disponible es el siguiente: `)
     for(let medalla of array){
        console.log(`Modelo: ${medalla.modelo} - Color: ${medalla.color} - Precio: ${medalla.precio} - ID: ${medalla.id}`)
     }
 }
 
+function mostrarCatalogo(array) {
+    verCatalogoConsola(array)
+
+    catalogoDiv.innerHTML = ``
+    for(let medalla of array) {
+        let nuevaMedalla = document.createElement("p")
+        nuevaMedalla.innerHTML = `<p>Modelo: ${medalla.modelo} - Color: ${medalla.color} - Precio: ${medalla.precio} - ID: ${medalla.id}</p>`
+        catalogoDiv.appendChild(nuevaMedalla)
+    }
+}
+    
+    
 function agregarAlCarrito(){
     carrito.push(producto) //cambiar por lo que corresponda//
     console.log(carrito)
-}
-
-function mostrarCatalogo(catalogoMedallas) {
-catalogoDiv.innerHTML = ``
-for(let medalla of catalogoMedallas) {
-    let nuevaMedalla = document.createElement("p")
-    nuevaMedalla.innerHTML = `<p>Modelo: ${medalla.modelo} - Color: ${medalla.color} - Precio: ${medalla.precio} - ID: ${medalla.id}</p>`
-}
 }
 
 
 
 
 //Eventos//
+verCatalogo.addEventListener("click", ()=>{
+   mostrarCatalogo(catalogoMedallas)
+})
 
-`
 
 comprarMedalla.addEventListener("click", ()=>{
     console.log(`Se agregó ${producto} al carrito`)
