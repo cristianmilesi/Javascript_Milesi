@@ -2,9 +2,13 @@
 let catalogoDiv = document.getElementById("catalogoDiv")
 let verCatalogo = document.getElementById("verCatalogo")
 let ocultarCatalogo = document.getElementById("ocultarCatalogo")
+let modeloIngresado = document.getElementById("modeloInput")
+let colorIngresado = document.getElementById("colorInput")
+let cantidadIngresado = document.getElementById("cantidadInput")
 let comprarMedalla = document.getElementById("medallasBtn")
 let comprarBandana = document.getElementById("bandanasBtn")
 let comprarCollar = document.getElementById("collaresBtn")
+let botonFinalizar = document.getElementById("botonFinalizarCompra")
 
 let carrito = []
 
@@ -55,14 +59,15 @@ function mostrarCatalogo(array) {
         catalogoDiv.appendChild(nuevaMedalla)
     }
 }
-    
-    
-function agregarAlCarrito(){
-    carrito.push(producto) //cambiar por lo que corresponda//
-    console.log(carrito)
+
+//No funciona agregar al carrito - Revisar //
+function agregarAlCarrito(array){
+    let precioFinal = cantidadIngresado.value * 300
+    const nuevoProducto = new Medalla(modeloIngresado.value, colorIngresado.value, precioFinal, catalogoMedallas.length+1) 
+    array.push(nuevoProducto)
+    localStorage.setItem("carrito", JSON.stringify(array))
+    console.log(`Se agregaron ${cantidadIngresado.value} medallas del modelo ${modeloIngresado.value} y de color ${colorIngresado.value}`)
 }
-
-
 
 
 //Eventos//
@@ -74,12 +79,8 @@ ocultarCatalogo.onclick = () => {
     catalogoDiv.innerHTML = ``
  }
 
-comprarMedalla.addEventListener("click", ()=>{
-    console.log(`Se agregó ${producto} al carrito`)
-    agregarAlCarrito(producto) //Cambiar producto por el objeto correspondiente//
 
-})
-
+// A futuro voy a intentar agregar también la opción de otros elementos // 
 comprarBandana.addEventListener("click", ()=>{
     console.log("Botón de Comprar Bandana funciona")
 })
@@ -88,3 +89,10 @@ comprarCollar.addEventListener("click", ()=>{
     console.log("Botón de Comprar Collar funciona")
 })
 
+modeloIngresado.addEventListener("change", ()=> {
+    let valorModeloIngresado = modeloIngresado.value
+    console.log(`El modelo ingresado es ${valorModeloIngresado}`)
+})
+
+botonFinalizar.addEventListener("click", ()=> {
+    agregarAlCarrito(carrito) })
