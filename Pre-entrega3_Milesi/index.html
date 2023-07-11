@@ -172,13 +172,16 @@
 
           <!-- Opción ver catálogo. Muestra el catálogo en una pequeña lista -->
           <div class="row">
-            <div class="m-5 col-lg-3">
+            <div class="m-4 col-lg-4 col-md-12">
                 <button id="verCatalogo" class="btn btn-success botonCatalogo">Ver Catálogo</button>
             </div>
-            <div class="m-5 col-lg-3">
+            <div class="m-4 col-lg-4 col-md-12">
                 <button id="ocultarCatalogo" class="btn btn-success botonCatalogo">Ocultar Catálogo</button>
-    
             </div>
+
+            <div class="m-4 col-lg-4 col-md-12">
+              <a id="agregarProductoBtn" data-bs-toggle="modal" data-bs-target="#idModalProducto" class="btn btn-primary botonCatalogo my-2">Agregar producto al catálogo</a>
+          </div>
     
           </div>
 
@@ -188,6 +191,63 @@
               <div id="catalogoDiv" class="row">
                   
               </div>
+          </div>
+
+          <!--Modal para agregar un producto -->
+
+          <div class="modal fade" id="idModalProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ingrese el producto</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-bodyCarrito">
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect0">Seleccionar Tipo</label>
+                      <select class="form-control" id="tipoProductoInput">
+                        <option>Medallas</option>
+                        <option>Collar</option>
+                        <option>Bandana</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Seleccionar Modelo</label>
+                      <select class="form-control" id="modeloProductoInput">
+                        <option>Hueso grande</option>
+                        <option>Hueso pequeño</option>
+                        <option>Circulo</option>
+                        <option>Pez</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect2">Color</label>
+                      <select class="form-control" id="colorProductoInput">
+                        <option>Naranja</option>
+                        <option>Verde</option>
+                        <option>Celeste</option>
+                        <option>Rosa</option>
+                        <option>Amarillo</option>
+                      </select>
+                    </div>
+
+                  </form>
+                </div>
+
+                <div class="row ml-ato">
+                  <p id="precioTotal"></p>
+                </div>
+                <div class="modal-footer">
+                  
+                  
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonAgregarAlCatálogo">Agregar a catálogo</button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Modal para agregar agregar al carrito una compra -->
