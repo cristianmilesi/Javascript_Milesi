@@ -35,7 +35,7 @@
               </ul>
             </div>
             <div class="carrito">
-                <button class="carritoBtn p-2 rounded"><i class="fa-solid fa-cart-shopping carritoIcon"></i></button>
+                <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary carritoBtn p-2 rounded"><i class="fa-solid fa-cart-shopping carritoIcon"></i></a>
             </div>            
           </div>
           
@@ -93,6 +93,7 @@
             <h2 class="título_main text-center m-2">Nuestros productos</h2>
         </div>
 
+        <!--Medalla con Mas Info y botón comprar-->
         <section class="row d-flex justify-content-center">
             <div class="col-md-4 col-sm-12 my-4 d-flex justify-content-center">
               <div class="tarjeta">
@@ -112,13 +113,12 @@
                     <p>Vienen en cuatro formas y tamaños diferentes: hueso grande, círculo, hueso chico, y pez, para perros/as grandes, medianos/as, pequeños/as y gatos/as respectivamente. Se realizan más de cuarenta diseños diferentes y cuenta con un espacio en blanco al frente para completar con el nombre de la mascota, y un espacio en blanco al dorso para colocar el teléfono del dueño/a. Están pensadas para la comercialización en pet shops, veterinarias y forrajerías por lo que cuentan con un empaquetado que ayuda a exhibir el producto y en el cual se encuentran las indicaciones de uso. </p> 
                     <p>Tamaños: para perros/as grandes (hueso grande), medianos/as (Hueso grande o círculo) y chicos/as (Hueso chico). Y además para gatos/as (Pez) </p> 
                   </div>
-                  
-                  <button id="medallasBtn" class="botón_comprar my-2" type="submit"> Comprar </button>
-                  
+                  <a id="medallasBtn" data-bs-toggle="modal" data-bs-target="#idModalMedallas" class="btn btn-primary botón_comprar my-2">Comprar</a>
                 </div>
               </div>
             </div>
             
+            <!--Bandana con Mas Info y botón comprar (no funciona aún)-->
             <div class="col-md-4 col-sm-12 my-4 d-flex justify-content-evenly">
               <div class="tarjeta">
                 <h2 class="título_producto mt-1">Bandanas o pañuelos</h2>
@@ -144,6 +144,7 @@
               </div>
             </div>
     
+            <!--Collar con Mas Info y botón comprar (no funciona aún)-->
             <div class="col-md-4 col-sm-12 my-4 d-flex justify-content-evenly">
               <div class="tarjeta">
                 <h2 class="título_producto mt-1">Collares</h2>
@@ -168,7 +169,102 @@
               </div>
             </div>
           </section>
-        
+
+          <!-- Opción ver catálogo. Muestra el catálogo en una pequeña lista -->
+          <div class="row">
+            <div class="m-5 col-lg-3">
+                <button id="verCatalogo" class="btn btn-success">Ver Catálogo</button>
+            </div>
+            <div class="m-5 col-lg-3">
+                <button id="ocultarCatalogo" class="btn btn-success">Ocultar Catálogo</button>
+    
+            </div>
+    
+          </div>
+
+          <!-- Catálogo -->
+          <div class="container">
+            <div id="coincidencia"></div>
+              <div id="catalogoDiv" class="row">
+                  
+              </div>
+          </div>
+
+          <!-- Modal para agregar agregar al carrito una compra -->
+
+          <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-bodyCarrito">
+                  
+                </div>
+                <div class="row ml-ato">
+                  <p id="precioTotal"></p>
+                </div>
+                <div class="modal-footer">
+                  
+                  
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="idModalMedallas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Haga su pedido</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-bodyCarrito">
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Email</label>
+                      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Seleccionar Modelo</label>
+                      <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Hueso grande</option>
+                        <option>Hueso pequeño</option>
+                        <option>Circulo</option>
+                        <option>Pez</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect2">Color</label>
+                      <select class="form-control" id="exampleFormControlSelect2">
+                        <option>Naranja</option>
+                        <option>Verde</option>
+                        <option>Celeste</option>
+                        <option>Rosa</option>
+                        <option>Amarillo</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormNumber">Cantidad</label>
+                      <input type="number" id="exampleFormControlTextarea1" rows="3">
+                    </div>
+                  </form>
+                </div>
+                <div class="row ml-ato">
+                  <p id="precioTotal"></p>
+                </div>
+                <div class="modal-footer">
+                  
+                  
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Agregar al carrito</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </main>
     
 
