@@ -8,9 +8,6 @@ let modeloProductoIngresado = document.getElementById("modeloProductoInput")
 let colorProductoIngresado = document.getElementById("colorProductoInput")
 let botonAgregarAlCatálogo = document.getElementById("botonAgregarAlCatálogo")
 
-let tipoIngresado = tipoProductoIngresado.value
-let modeloIngresado = modeloProductoIngresado.value
-let colorIngresado = colorProductoIngresado.value
 
 let cantidadIngresado = document.getElementById("cantidadInput")
 let comprarMedalla = document.getElementById("medallasBtn")
@@ -45,11 +42,14 @@ const producto3 = new Producto("Medalla", "Circulo", "azul", 300, 3)
 const producto4 = new Producto("Collar", "Grande", "naranja", 500, 4)
 const producto5 = new Producto("Bandana", "Mediana", "rosa", 400, 5)
 
+
 //Creación de Catálogo
 
+const catalogoProductos = JSON.parse(localStorage.getItem("catalogo")) || [];
 
-const catalogoProductos = []
-catalogoProductos.push(producto1, producto2, producto3, producto4, producto5) 
+if(catalogoProductos.length === 0){
+  catalogoProductos.push(producto1, producto2, producto3, producto4, producto5)
+}
 
 //Funciones//
 
@@ -61,6 +61,7 @@ function verCatalogoConsola(array){
     }
 }
 
+//mostrarCatálogo//
 function mostrarCatalogo(array) {
     verCatalogoConsola(array)
 
@@ -73,36 +74,66 @@ function mostrarCatalogo(array) {
     }
 }
 
-function calcularPrecioProducto(tipoIngresado) {
-    if (tipoIngresado === "Medalla") {
-      return 300;
-    } else if (tipoIngresado === "Collar") {
-      return 500;
-    } else if (tipoIngresado === "Bandana") {
-      return 400;
-    }
+//Calcular el precio según tipo de producto
+// function calcularPrecioProducto(tipoIngresado) {
+//     if (tipoIngresado === "Medalla") {
+//       return 300;
+//     } else if (tipoIngresado === "Collar") {
+//       return 500;
+//     } else if (tipoIngresado === "Bandana") {
+//       return 400;
+//     }
+//   }
+function calcularPrecioProducto(modeloIngresado){ 
+  let precioProducto = 0
+  switch(modeloIngresado){
+     case "Hueso grande":
+        precioProducto = 300
+     break
+     case "Hueso pequeño":
+        precioProducto =250
+     break
+     case "Circulo":
+      precioProducto = 200
+     break
+     case "Pez":
+      precioProducto = 200
+     break
+     case "Collar grande":
+      precioProducto = 500
+     break
+     case "Collar pequeño":
+      precioProducto = 400
+     break
+     case "Bandana grande":
+      precioProducto = 400
+     break
+     case "Bandana pequeña":
+      precioProducto = 300
+     break
+     default:
+        mostrarCatalogo(catalogoProductos)
+     break
   }
+  return precioProducto
+}
 
-
-//Agregar Producto//
+//Agregar Producto a Catálogo//
 function agregarProducto(array){
+let tipoIngresado = tipoProductoIngresado.value
+let modeloIngresado = modeloProductoIngresado.value
+let colorIngresado = colorProductoIngresado.value
+let precioProducto = calcularPrecioProducto(modeloIngresado)
+//let precioProducto = calcularPrecioProducto(tipoIngresado) 
 
-let precioProducto = calcularPrecioProducto(tipoIngresado) 
-//arriba capturamos toda la etqieta input, necesitamos el valor
 const productoNuevo = new Producto(tipoIngresado, modeloIngresado, colorIngresado, precioProducto, array.length+1)
-//pusheamos al array:
-array.push(productoNuevo)
+
+array.push(productoNuevo);
 localStorage.setItem("catalogo", JSON.stringify(array));
 mostrarCatalogo(array);
     
-//resetear el form
-tipoProductoIngresado.value = ""
-modeloProductoIngresado.value = ""
-colorProductoIngresado.value = ""
-
 console.log(`Se agregó al catálogo el siguiente producto: ${tipoIngresado} - ${modeloIngresado} - ${colorIngresado} - precio: ${precioProducto} - ID: ${array.length+1}` )
 }
-
 
 
 
