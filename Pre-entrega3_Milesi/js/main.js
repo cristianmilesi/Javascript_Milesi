@@ -8,8 +8,10 @@ let modeloProductoIngresado = document.getElementById("modeloProductoInput")
 let colorProductoIngresado = document.getElementById("colorProductoInput")
 let botonAgregarAlCatálogo = document.getElementById("botonAgregarAlCatálogo")
 
-let modeloIngresado = document.getElementById("modeloInput")
-let colorIngresado = document.getElementById("colorInput")
+let tipoIngresado = tipoProductoIngresado.value
+let modeloIngresado = modeloProductoIngresado.value
+let colorIngresado = colorProductoIngresado.value
+
 let cantidadIngresado = document.getElementById("cantidadInput")
 let comprarMedalla = document.getElementById("medallasBtn")
 let comprarBandana = document.getElementById("bandanasBtn")
@@ -71,34 +73,35 @@ function mostrarCatalogo(array) {
     }
 }
 
-function agregarProducto(array){
-    let tipoIngresado = document.getElementById("tipoProductoIngresado")
-    let modeloIngresado = document.getElementById("modeloProductoIngresado")
-    let colorIngresado = document.getElementById("colorProductoIngresado")
-    let precioProducto = () => {
-        if(tipoIngresado.value === "Medalla") {
-            return 300
-        } else if (tipoIngresado.value = "Collar"){
-            return 500
-        } else (tipoIngresado.value = "Bandana");{
-            return 400
-        }
+function calcularPrecioProducto(tipoIngresado) {
+    if (tipoIngresado === "Medalla") {
+      return 300;
+    } else if (tipoIngresado === "Collar") {
+      return 500;
+    } else if (tipoIngresado === "Bandana") {
+      return 400;
     }
-    console.log(precioProducto)
+  }
+
+
+//Agregar Producto//
+function agregarProducto(array){
+
+let precioProducto = calcularPrecioProducto(tipoIngresado) 
+//arriba capturamos toda la etqieta input, necesitamos el valor
+const productoNuevo = new Producto(tipoIngresado, modeloIngresado, colorIngresado, precioProducto, array.length+1)
+//pusheamos al array:
+array.push(productoNuevo)
+localStorage.setItem("catalogo", JSON.stringify(array));
+mostrarCatalogo(array);
     
-    //arriba capturamos toda la etqieta input, necesitamos el valor
-    const productoNuevo = new Producto(tipoIngresado.value, modeloIngresado.value, colorIngresado.value, precioProducto, array.length+1)
-    //pusheamos al array:
-    array.push(productoNuevo)
-    //setear en el storage el array con el libro
-    localStorage.setItem("catalogo", JSON.stringify(array))
-    mostrarCatalogo(array)
-    
-    // //resetear el form
-    // autorIngresado.value = ""
-    // tituloIngresado.value = ""
-    // precioIngresado.value = ""
- }
+//resetear el form
+tipoProductoIngresado.value = ""
+modeloProductoIngresado.value = ""
+colorProductoIngresado.value = ""
+
+console.log(`Se agregó al catálogo el siguiente producto: ${tipoIngresado} - ${modeloIngresado} - ${colorIngresado} - precio: ${precioProducto} - ID: ${array.length+1}` )
+}
 
 
 
@@ -133,5 +136,5 @@ comprarCollar.addEventListener("click", ()=>{
 //     agregarAlCarrito(carrito) })
 
 botonAgregarAlCatálogo.addEventListener("click", ()=> {
-    agregarProducto(catalogoProductos)
+agregarProducto(catalogoProductos)
 })
